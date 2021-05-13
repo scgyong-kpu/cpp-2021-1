@@ -11,6 +11,11 @@ int main(void)
 	txBg.loadFromFile("res/outerspace.png");
 	spBg.setTexture(txBg);
 
+	Sprite spPlayer;
+	Texture txPlayer;
+	txPlayer.loadFromFile("res/player.png");
+	spPlayer.setTexture(txPlayer);
+
 	while (win.isOpen()) {
 		Event e;
 		while (win.pollEvent(e)) {
@@ -20,6 +25,7 @@ int main(void)
 			}
 		}
 		win.draw(spBg);
+		win.draw(spPlayer);
 		win.display();
 	}
 	return 0;
