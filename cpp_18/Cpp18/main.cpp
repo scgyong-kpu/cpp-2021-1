@@ -17,6 +17,9 @@ int main(void)
 	spPlayer.setTexture(txPlayer);
 
 	Vector2f playerVector;
+	const int playerSpeed = 300;
+
+	Clock clock;
 
 	while (win.isOpen()) {
 		Event e;
@@ -27,16 +30,21 @@ int main(void)
 			}
 			if (e.type == Event::KeyPressed) {
 				if (e.key.code == Keyboard::Left) {
-					playerVector.x = -0.1;
+					playerVector.x = -playerSpeed;
 				} else if (e.key.code == Keyboard::Right) {
-					playerVector.x = 0.1;
+					playerVector.x = playerSpeed;
 				}
 			} else if (e.type == Event::KeyReleased) {
 				playerVector.x = 0;
 			}
 		}
 
-		spPlayer.move(playerVector);
+		Time diff = clock.restart();
+		float frameTime = diff.asSeconds();
+		float dx = playerVector.x * frameTime;
+		float dy = playerVector.y * frameTime;
+
+		spPlayer.move(dx, dy);
 
 		win.draw(spBg);
 		win.draw(spPlayer);
