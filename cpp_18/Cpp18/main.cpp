@@ -44,7 +44,7 @@ int main(void)
 					win.close();
 					break;
 				}
-				if (e.key.code = Keyboard::Space) {
+				if (e.key.code == Keyboard::Space) {
 					spBall.setPosition(0, 0);
 				}
 			} else if (e.type == Event::KeyReleased) {
