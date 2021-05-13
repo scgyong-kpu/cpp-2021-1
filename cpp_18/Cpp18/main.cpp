@@ -20,6 +20,7 @@ int main(void)
 	Texture txBall;
 	txBall.loadFromFile("res/missile.png");
 	spBall.setTexture(txBall);
+	Vector2f ballVector(120, 100);
 
 	Vector2f playerVector;
 	const int playerSpeed = 300;
@@ -43,6 +44,9 @@ int main(void)
 					win.close();
 					break;
 				}
+				if (e.key.code = Keyboard::Space) {
+					spBall.setPosition(0, 0);
+				}
 			} else if (e.type == Event::KeyReleased) {
 				if (e.key.code == Keyboard::Left) {
 					if (playerVector.x <= 0) playerVector.x += playerSpeed;
@@ -54,10 +58,18 @@ int main(void)
 
 		Time diff = clock.restart();
 		float frameTime = diff.asSeconds();
-		float dx = playerVector.x * frameTime;
-		float dy = playerVector.y * frameTime;
 
-		spPlayer.move(dx, dy);
+		{
+			float dx = playerVector.x * frameTime;
+			float dy = playerVector.y * frameTime;
+			spPlayer.move(dx, dy);
+		}
+
+		{
+			float dx = ballVector.x * frameTime;
+			float dy = ballVector.y * frameTime;
+			spBall.move(dx, dy);
+		}
 
 		win.draw(spBg);
 		win.draw(spBall);
