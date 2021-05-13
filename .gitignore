@@ -1,6 +1,8 @@
 # Visual Studio
 .vs/
 *.VC.db
+Debug/
+Release/
 
 # Prerequisites
 *.d
