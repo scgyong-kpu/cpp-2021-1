@@ -30,16 +30,20 @@ int main(void)
 			}
 			if (e.type == Event::KeyPressed) {
 				if (e.key.code == Keyboard::Left) {
-					playerVector.x = -playerSpeed;
+					if (playerVector.x >= 0) playerVector.x -= playerSpeed;
 				} else if (e.key.code == Keyboard::Right) {
-					playerVector.x = playerSpeed;
+					if (playerVector.x <= 0) playerVector.x += playerSpeed;
 				}
 				if (e.key.code == Keyboard::Escape) {
 					win.close();
 					break;
 				}
 			} else if (e.type == Event::KeyReleased) {
-				playerVector.x = 0;
+				if (e.key.code == Keyboard::Left) {
+					if (playerVector.x <= 0) playerVector.x += playerSpeed;
+				} else if (e.key.code == Keyboard::Right) {
+					if (playerVector.x >= 0) playerVector.x -= playerSpeed;
+				}
 			}
 		}
 
