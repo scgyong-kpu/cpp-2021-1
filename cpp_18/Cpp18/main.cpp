@@ -23,6 +23,13 @@ int main(void)
 				win.close();
 				break;
 			}
+			if (e.type == Event::KeyPressed) {
+				if (e.key.code == Keyboard::Left) {
+					spPlayer.move(-10, 0);
+				} else if (e.key.code == Keyboard::Right) {
+					spPlayer.move(10, 0);
+				}
+			}
 		}
 		win.draw(spBg);
 		win.draw(spPlayer);
