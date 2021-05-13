@@ -16,6 +16,11 @@ int main(void)
 	txPlayer.loadFromFile("res/player.png");
 	spPlayer.setTexture(txPlayer);
 
+	Sprite spBall;
+	Texture txBall;
+	txBall.loadFromFile("res/missile.png");
+	spBall.setTexture(txBall);
+
 	Vector2f playerVector;
 	const int playerSpeed = 300;
 
@@ -55,6 +60,7 @@ int main(void)
 		spPlayer.move(dx, dy);
 
 		win.draw(spBg);
+		win.draw(spBall);
 		win.draw(spPlayer);
 		win.display();
 	}
