@@ -16,6 +16,8 @@ int main(void)
 	txPlayer.loadFromFile("res/player.png");
 	spPlayer.setTexture(txPlayer);
 
+	Vector2f playerVector;
+
 	while (win.isOpen()) {
 		Event e;
 		while (win.pollEvent(e)) {
@@ -25,12 +27,17 @@ int main(void)
 			}
 			if (e.type == Event::KeyPressed) {
 				if (e.key.code == Keyboard::Left) {
-					spPlayer.move(-10, 0);
+					playerVector.x = -0.1;
 				} else if (e.key.code == Keyboard::Right) {
-					spPlayer.move(10, 0);
+					playerVector.x = 0.1;
 				}
+			} else if (e.type == Event::KeyReleased) {
+				playerVector.x = 0;
 			}
 		}
+
+		spPlayer.move(playerVector);
+
 		win.draw(spBg);
 		win.draw(spPlayer);
 		win.display();
