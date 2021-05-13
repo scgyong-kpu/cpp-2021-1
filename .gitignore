@@ -1,3 +1,7 @@
+# Visual Studio
+.vs/
+*.VC.db
+
 # Prerequisites
 *.d
 
