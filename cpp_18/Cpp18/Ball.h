@@ -6,7 +6,7 @@ using namespace sf;
 class Ball : public Sprite
 {
 public:
-	void setVector(Vector2f vector);
+	void setVector(const Vector2f &vector);
 	Vector2f getVector();
 private:
 	Vector2f vector;
