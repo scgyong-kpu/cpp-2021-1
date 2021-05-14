@@ -78,7 +78,8 @@ int main(void)
 
 		for (auto &ball: balls)
 		{
-			Vector2f vector = ball.getVector();
+			const Vector2f &vector = ball.getVector();
+			//vector.x *= 2;
 			float dx = vector.x * frameTime;
 			float dy = vector.y * frameTime;
 			ball.move(dx, dy);

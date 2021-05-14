@@ -7,7 +7,7 @@ class Ball : public Sprite
 {
 public:
 	void setVector(const Vector2f &vector);
-	Vector2f getVector();
+	const Vector2f &getVector();
 private:
 	Vector2f vector;
 };
