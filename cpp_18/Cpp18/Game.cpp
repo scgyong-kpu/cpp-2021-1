@@ -2,7 +2,7 @@
 
 float Game::frameTime;
 
-Game::Game()
+Game::Game(RenderWindow& win) : win{ win }
 {
 	txBg.loadFromFile("res/outerspace.png");
 	spBg.setTexture(txBg);
@@ -25,7 +25,7 @@ void Game::update(void)
 	}
 }
 
-void Game::draw(RenderWindow& win)
+void Game::draw(void)
 {
 	win.draw(spBg);
 	for (auto& ball : balls) {
@@ -34,7 +34,7 @@ void Game::draw(RenderWindow& win)
 	win.draw(spPlayer);
 }
 
-void Game::generateBall()
+void Game::generateBall(void)
 {
 	MovingSprite ball;
 	ball.setTexture(txBall);

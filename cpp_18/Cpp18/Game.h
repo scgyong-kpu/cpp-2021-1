@@ -9,14 +9,16 @@ using namespace sf;
 class Game
 {
 public:
-	Game();
+	Game(RenderWindow &win);
 	void update(void);
-	void draw(RenderWindow& win);
-	void generateBall();
+	void draw(void);
+	void generateBall(void);
 
 	static float frameTime;
 
 private:
+	RenderWindow& win;
+
 	Sprite spBg;
 	Texture txBg;
 

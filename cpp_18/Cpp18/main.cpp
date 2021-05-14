@@ -11,7 +11,7 @@ using namespace sf;
 int main(void)
 {
 	RenderWindow win(VideoMode(800, 600), "Game");
-	Game game;
+	Game game(win);
 
 	while (win.isOpen()) {
 		Event e;
@@ -45,7 +45,7 @@ int main(void)
 
 		game.update();
 
-		game.draw(win);
+		game.draw();
 		win.display();
 	}
 	return 0;
