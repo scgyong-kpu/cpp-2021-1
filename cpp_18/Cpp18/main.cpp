@@ -16,10 +16,11 @@ int main(void)
 	txPlayer.loadFromFile("res/player.png");
 	spPlayer.setTexture(txPlayer);
 
-	Sprite spBall;
+	//Sprite spBall;
+	std::vector<Sprite> balls;
 	Texture txBall;
 	txBall.loadFromFile("res/missile.png");
-	spBall.setTexture(txBall);
+	//spBall.setTexture(txBall);
 	Vector2f ballVector(120, 100);
 
 	Vector2f playerVector;
@@ -45,7 +46,10 @@ int main(void)
 					break;
 				}
 				if (e.key.code == Keyboard::Space) {
-					spBall.setPosition(0, 0);
+					Sprite ball;
+					ball.setTexture(txBall);
+					balls.push_back(ball);
+					//spBall.setPosition(0, 0);
 				}
 			} else if (e.type == Event::KeyReleased) {
 				if (e.key.code == Keyboard::Left) {
@@ -65,14 +69,17 @@ int main(void)
 			spPlayer.move(dx, dy);
 		}
 
+		for (auto &ball: balls)
 		{
 			float dx = ballVector.x * frameTime;
 			float dy = ballVector.y * frameTime;
-			spBall.move(dx, dy);
+			ball.move(dx, dy);
 		}
 
 		win.draw(spBg);
-		win.draw(spBall);
+		for (auto &ball : balls) {
+			win.draw(ball);
+		}
 		win.draw(spPlayer);
 		win.display();
 	}
