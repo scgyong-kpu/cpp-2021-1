@@ -8,6 +8,7 @@ class MovingSprite : public Sprite
 public:
 	void setVector(const Vector2f &vector);
 	const Vector2f &getVector();
+	void update();
 private:
 	Vector2f vector;
 };
