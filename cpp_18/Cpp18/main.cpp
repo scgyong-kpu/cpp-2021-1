@@ -1,10 +1,13 @@
 #include <SFML/Graphics.hpp>
+#include <random>
 
 using namespace sf;
 //using namespace std;
 
 int main(void)
 {
+	std::mt19937 rnd_engine;
+
 	RenderWindow win(VideoMode(800, 600), "Game");
 	Sprite spBg;
 	Texture txBg;
@@ -49,6 +52,8 @@ int main(void)
 					Sprite ball;
 					ball.setTexture(txBall);
 					balls.push_back(ball);
+					ballVector.x = rnd_engine() % 100 + 50;
+					ballVector.y = rnd_engine() % 100 + 20;
 					//spBall.setPosition(0, 0);
 				}
 			} else if (e.type == Event::KeyReleased) {
