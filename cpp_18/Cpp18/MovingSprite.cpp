@@ -1,4 +1,5 @@
 #include "MovingSprite.h"
+#include "Game.h"
 
 void MovingSprite::setVector(const Vector2f &vector)
 {
@@ -14,7 +15,7 @@ extern float frameTime;
 
 void MovingSprite::update()
 {
-	float dx = vector.x * frameTime;
-	float dy = vector.y * frameTime;
+	float dx = vector.x * Game::frameTime;
+	float dy = vector.y * Game::frameTime;
 	move(dx, dy);
 }

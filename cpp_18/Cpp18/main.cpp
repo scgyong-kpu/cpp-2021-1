@@ -1,36 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 
-#include "MovingSprite.h"
+#include "Game.h"
 
 using namespace sf;
 //using namespace std;
 
-float frameTime;
+//float frameTime;
 
 int main(void)
 {
-	std::mt19937 rnd_engine;
-
 	RenderWindow win(VideoMode(800, 600), "Game");
-	Sprite spBg;
-	Texture txBg;
-	txBg.loadFromFile("res/outerspace.png");
-	spBg.setTexture(txBg);
-
-	MovingSprite spPlayer;
-	Texture txPlayer;
-	txPlayer.loadFromFile("res/player.png");
-	spPlayer.setTexture(txPlayer);
-
-	//Sprite spBall;
-	std::vector<MovingSprite> balls;
-	Texture txBall;
-	txBall.loadFromFile("res/missile.png");
-
-	const int playerSpeed = 300;
-
-	Clock clock;
+	Game game;
 
 	while (win.isOpen()) {
 		Event e;
@@ -50,13 +31,7 @@ int main(void)
 					break;
 				}
 				if (e.key.code == Keyboard::Space) {
-					MovingSprite ball;
-					ball.setTexture(txBall);
-					Vector2f vector;
-					vector.x = (float)(rnd_engine() % 100 + 50);
-					vector.y = (float)(rnd_engine() % 100 + 20);
-					ball.setVector(vector);
-					balls.push_back(ball);
+					game.generateBall();
 					//spBall.setPosition(0, 0);
 				}
 			} else if (e.type == Event::KeyReleased) {
@@ -68,20 +43,9 @@ int main(void)
 			}
 		}
 
-		Time diff = clock.restart();
-		frameTime = diff.asSeconds();
+		game.update();
 
-		spPlayer.update();
-
-		for (auto &ball: balls) {
-			ball.update();
-		}
-
-		win.draw(spBg);
-		for (auto &ball : balls) {
-			win.draw(ball);
-		}
-		win.draw(spPlayer);
+		game.draw(win);
 		win.display();
 	}
 	return 0;
