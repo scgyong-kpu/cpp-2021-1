@@ -6,6 +6,10 @@
 
 using namespace sf;
 
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
+#define WINDOW_TITLE "Dodge Game 2021"
+
 class Game
 {
 public:

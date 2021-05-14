@@ -1,16 +1,8 @@
-#include <SFML/Graphics.hpp>
-#include <random>
-
 #include "Game.h"
-
-using namespace sf;
-//using namespace std;
-
-//float frameTime;
 
 int main(void)
 {
-	RenderWindow win(VideoMode(800, 600), "Game");
+	RenderWindow win(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
 	Game game(win);
 
 	while (win.isOpen()) {
