@@ -22,7 +22,7 @@ int main(void)
 	spPlayer.setTexture(txPlayer);
 
 	//Sprite spBall;
-	std::vector<Ball> balls;
+	std::vector<MovingSprite> balls;
 	Texture txBall;
 	txBall.loadFromFile("res/missile.png");
 
@@ -49,7 +49,7 @@ int main(void)
 					break;
 				}
 				if (e.key.code == Keyboard::Space) {
-					Ball ball;
+					MovingSprite ball;
 					ball.setTexture(txBall);
 					Vector2f vector;
 					vector.x = rnd_engine() % 100 + 50;

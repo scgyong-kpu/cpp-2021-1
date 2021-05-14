@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-class Ball : public Sprite
+class MovingSprite : public Sprite
 {
 public:
 	void setVector(const Vector2f &vector);

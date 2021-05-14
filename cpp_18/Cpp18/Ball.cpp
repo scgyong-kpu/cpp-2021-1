@@ -1,11 +1,11 @@
 #include "Ball.h"
 
-void Ball::setVector(const Vector2f &vector)
+void MovingSprite::setVector(const Vector2f &vector)
 {
 	this->vector = vector;
 }
 
-const Vector2f& Ball::getVector()
+const Vector2f& MovingSprite::getVector()
 {
 	return vector;
 }
