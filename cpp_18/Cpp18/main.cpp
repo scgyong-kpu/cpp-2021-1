@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 
+#include "Ball.h"
+
 using namespace sf;
 //using namespace std;
 
@@ -20,11 +22,9 @@ int main(void)
 	spPlayer.setTexture(txPlayer);
 
 	//Sprite spBall;
-	std::vector<Sprite> balls;
+	std::vector<Ball> balls;
 	Texture txBall;
 	txBall.loadFromFile("res/missile.png");
-	//spBall.setTexture(txBall);
-	Vector2f ballVector(120, 100);
 
 	Vector2f playerVector;
 	const int playerSpeed = 300;
@@ -49,11 +49,13 @@ int main(void)
 					break;
 				}
 				if (e.key.code == Keyboard::Space) {
-					Sprite ball;
+					Ball ball;
 					ball.setTexture(txBall);
+					Vector2f vector;
+					vector.x = rnd_engine() % 100 + 50;
+					vector.y = rnd_engine() % 100 + 20;
+					ball.setVector(vector);
 					balls.push_back(ball);
-					ballVector.x = rnd_engine() % 100 + 50;
-					ballVector.y = rnd_engine() % 100 + 20;
 					//spBall.setPosition(0, 0);
 				}
 			} else if (e.type == Event::KeyReleased) {
@@ -76,8 +78,9 @@ int main(void)
 
 		for (auto &ball: balls)
 		{
-			float dx = ballVector.x * frameTime;
-			float dy = ballVector.y * frameTime;
+			Vector2f vector = ball.getVector();
+			float dx = vector.x * frameTime;
+			float dy = vector.y * frameTime;
 			ball.move(dx, dy);
 		}
 
