@@ -16,7 +16,7 @@ int main(void)
 	txBg.loadFromFile("res/outerspace.png");
 	spBg.setTexture(txBg);
 
-	Sprite spPlayer;
+	MovingSprite spPlayer;
 	Texture txPlayer;
 	txPlayer.loadFromFile("res/player.png");
 	spPlayer.setTexture(txPlayer);
@@ -26,7 +26,6 @@ int main(void)
 	Texture txBall;
 	txBall.loadFromFile("res/missile.png");
 
-	Vector2f playerVector;
 	const int playerSpeed = 300;
 
 	Clock clock;
@@ -39,11 +38,11 @@ int main(void)
 				break;
 			}
 			if (e.type == Event::KeyPressed) {
-				if (e.key.code == Keyboard::Left) {
-					if (playerVector.x >= 0) playerVector.x -= playerSpeed;
-				} else if (e.key.code == Keyboard::Right) {
-					if (playerVector.x <= 0) playerVector.x += playerSpeed;
-				}
+				//if (e.key.code == Keyboard::Left) {
+				//	if (playerVector.x >= 0) playerVector.x -= playerSpeed;
+				//} else if (e.key.code == Keyboard::Right) {
+				//	if (playerVector.x <= 0) playerVector.x += playerSpeed;
+				//}
 				if (e.key.code == Keyboard::Escape) {
 					win.close();
 					break;
@@ -52,18 +51,18 @@ int main(void)
 					MovingSprite ball;
 					ball.setTexture(txBall);
 					Vector2f vector;
-					vector.x = rnd_engine() % 100 + 50;
-					vector.y = rnd_engine() % 100 + 20;
+					vector.x = (float)(rnd_engine() % 100 + 50);
+					vector.y = (float)(rnd_engine() % 100 + 20);
 					ball.setVector(vector);
 					balls.push_back(ball);
 					//spBall.setPosition(0, 0);
 				}
 			} else if (e.type == Event::KeyReleased) {
-				if (e.key.code == Keyboard::Left) {
-					if (playerVector.x <= 0) playerVector.x += playerSpeed;
-				} else if (e.key.code == Keyboard::Right) {
-					if (playerVector.x >= 0) playerVector.x -= playerSpeed;
-				}
+				//if (e.key.code == Keyboard::Left) {
+				//	if (playerVector.x <= 0) playerVector.x += playerSpeed;
+				//} else if (e.key.code == Keyboard::Right) {
+				//	if (playerVector.x >= 0) playerVector.x -= playerSpeed;
+				//}
 			}
 		}
 
@@ -71,15 +70,15 @@ int main(void)
 		float frameTime = diff.asSeconds();
 
 		{
-			float dx = playerVector.x * frameTime;
-			float dy = playerVector.y * frameTime;
+			const Vector2f& vector = spPlayer.getVector();
+			float dx = vector.x * frameTime;
+			float dy = vector.y * frameTime;
 			spPlayer.move(dx, dy);
 		}
 
 		for (auto &ball: balls)
 		{
 			const Vector2f &vector = ball.getVector();
-			//vector.x *= 2;
 			float dx = vector.x * frameTime;
 			float dy = vector.y * frameTime;
 			ball.move(dx, dy);
