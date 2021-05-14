@@ -21,26 +21,12 @@ int main(void)
 				break;
 			}
 			if (e.type == Event::KeyPressed) {
-				//if (e.key.code == Keyboard::Left) {
-				//	if (playerVector.x >= 0) playerVector.x -= playerSpeed;
-				//} else if (e.key.code == Keyboard::Right) {
-				//	if (playerVector.x <= 0) playerVector.x += playerSpeed;
-				//}
 				if (e.key.code == Keyboard::Escape) {
 					win.close();
 					break;
 				}
-				if (e.key.code == Keyboard::Space) {
-					game.generateBall();
-					//spBall.setPosition(0, 0);
-				}
-			} else if (e.type == Event::KeyReleased) {
-				//if (e.key.code == Keyboard::Left) {
-				//	if (playerVector.x <= 0) playerVector.x += playerSpeed;
-				//} else if (e.key.code == Keyboard::Right) {
-				//	if (playerVector.x >= 0) playerVector.x -= playerSpeed;
-				//}
 			}
+			game.handleEvent(e);
 		}
 
 		game.update();

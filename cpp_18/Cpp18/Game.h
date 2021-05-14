@@ -12,6 +12,7 @@ public:
 	Game(RenderWindow &win);
 	void update(void);
 	void draw(void);
+	void handleEvent(Event& e);
 	void generateBall(void);
 
 	static float frameTime;

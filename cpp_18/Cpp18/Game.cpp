@@ -34,6 +34,15 @@ void Game::draw(void)
 	win.draw(spPlayer);
 }
 
+void Game::handleEvent(Event& e)
+{
+	if (e.type == Event::KeyPressed) {
+		if (e.key.code == Keyboard::Space) {
+			generateBall();
+		}
+	}
+}
+
 void Game::generateBall(void)
 {
 	MovingSprite ball;
