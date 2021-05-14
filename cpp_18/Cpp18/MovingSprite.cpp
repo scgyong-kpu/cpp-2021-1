@@ -1,4 +1,4 @@
-#include "Ball.h"
+#include "MovingSprite.h"
 
 void MovingSprite::setVector(const Vector2f &vector)
 {

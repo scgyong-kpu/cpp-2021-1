@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 
-#include "Ball.h"
+#include "MovingSprite.h"
 
 using namespace sf;
 //using namespace std;
