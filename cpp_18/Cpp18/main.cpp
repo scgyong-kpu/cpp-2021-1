@@ -6,6 +6,8 @@
 using namespace sf;
 //using namespace std;
 
+float frameTime;
+
 int main(void)
 {
 	std::mt19937 rnd_engine;
@@ -67,21 +69,12 @@ int main(void)
 		}
 
 		Time diff = clock.restart();
-		float frameTime = diff.asSeconds();
+		frameTime = diff.asSeconds();
 
-		{
-			const Vector2f& vector = spPlayer.getVector();
-			float dx = vector.x * frameTime;
-			float dy = vector.y * frameTime;
-			spPlayer.move(dx, dy);
-		}
+		spPlayer.update();
 
-		for (auto &ball: balls)
-		{
-			const Vector2f &vector = ball.getVector();
-			float dx = vector.x * frameTime;
-			float dy = vector.y * frameTime;
-			ball.move(dx, dy);
+		for (auto &ball: balls) {
+			ball.update();
 		}
 
 		win.draw(spBg);
