@@ -4,6 +4,12 @@
 Ball::Ball(Texture& texture)
 {
 	setTexture(texture);
+	Vector2u size = texture.getSize();
+	Vector2f pos;
+	pos.x = (float)(Game::getRandom(WINDOW_WIDTH) - size.x / 2);
+	pos.y = (float)(Game::getRandom(WINDOW_HEIGHT) - size.y / 2);
+	setPosition(pos);
+
 	vector.x = (float)(Game::getRandom(100) + 50);
 	vector.y = (float)(Game::getRandom(100) + 20);
 }
