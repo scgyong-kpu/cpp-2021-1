@@ -10,8 +10,11 @@ Ball::Ball(Texture& texture)
 	pos.y = (float)(Game::getRandom(WINDOW_HEIGHT) - size.y / 2);
 	setPosition(pos);
 
-	vector.x = (float)(Game::getRandom(100) + 50);
-	vector.y = (float)(Game::getRandom(100) + 20);
+	const double pi = atan(1) * 4;
+	double angle = (Game::getRandom(10000) / 10000.0) * 2 * pi;
+	int speed = Game::getRandom(100) + 100;
+	vector.x = (float)(speed * cos(angle));
+	vector.y = (float)(speed * sin(angle));
 }
 
 bool Ball::isOutOfScreen(void)
