@@ -48,3 +48,10 @@ void Game::generateBall(void)
 	Ball ball(txBall);
 	balls.push_back(ball);
 }
+
+static std::mt19937 rnd_engine;
+
+unsigned Game::getRandom(int bound)
+{
+	return rnd_engine() % bound;
+}

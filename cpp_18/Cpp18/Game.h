@@ -21,6 +21,7 @@ public:
 	void generateBall(void);
 
 	static float frameTime;
+	static unsigned getRandom(int bound);
 
 private:
 	RenderWindow& win;
@@ -35,6 +36,5 @@ private:
 	Texture txBall;
 
 	Clock clock;
-	std::mt19937 rnd_engine;
 };
 
