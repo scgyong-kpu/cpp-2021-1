@@ -41,6 +41,8 @@ void Game::handleEvent(Event& e)
 			generateBall();
 		}
 	}
+
+	spPlayer.handleEvent(e);
 }
 
 void Game::generateBall(void)
