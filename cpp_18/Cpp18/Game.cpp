@@ -23,6 +23,14 @@ void Game::update(void)
 	for (auto& ball : balls) {
 		ball.update();
 	}
+
+	for (auto it = balls.begin(); it != balls.end(); it++) {
+		if (it->isOutOfScreen()) {
+			balls.erase(it);
+			printf("[-]Ball count = %d\n", balls.size());
+			break;
+		}
+	}
 }
 
 void Game::draw(void)
@@ -49,6 +57,7 @@ void Game::generateBall(void)
 {
 	Ball ball(txBall);
 	balls.push_back(ball);
+	printf("[+]Ball count = %d\n", balls.size());
 }
 
 static std::mt19937 rnd_engine;
