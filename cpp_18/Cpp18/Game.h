@@ -4,6 +4,7 @@
 #include <random>
 #include "MovingSprite.h"
 #include "Ball.h"
+#include "Player.h"
 
 using namespace sf;
 
@@ -29,7 +30,7 @@ private:
 	Sprite spBg;
 	Texture txBg;
 
-	MovingSprite spPlayer;
+	Player spPlayer;
 	Texture txPlayer;
 
 	std::vector<Ball> balls;
