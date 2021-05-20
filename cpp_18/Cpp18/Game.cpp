@@ -45,7 +45,7 @@ void Game::handleEvent(Event& e)
 
 void Game::generateBall(void)
 {
-	MovingSprite ball;
+	Ball ball;
 	ball.setTexture(txBall);
 	Vector2f vector;
 	vector.x = (float)(rnd_engine() % 100 + 50);

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 #include "MovingSprite.h"
+#include "Ball.h"
 
 using namespace sf;
 
@@ -30,7 +31,7 @@ private:
 	MovingSprite spPlayer;
 	Texture txPlayer;
 
-	std::vector<MovingSprite> balls;
+	std::vector<Ball> balls;
 	Texture txBall;
 
 	Clock clock;
