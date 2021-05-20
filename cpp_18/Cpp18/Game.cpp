@@ -45,11 +45,6 @@ void Game::handleEvent(Event& e)
 
 void Game::generateBall(void)
 {
-	Ball ball;
-	ball.setTexture(txBall);
-	Vector2f vector;
-	vector.x = (float)(rnd_engine() % 100 + 50);
-	vector.y = (float)(rnd_engine() % 100 + 20);
-	ball.setVector(vector);
+	Ball ball(txBall);
 	balls.push_back(ball);
 }

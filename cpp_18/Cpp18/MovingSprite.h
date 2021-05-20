@@ -9,7 +9,7 @@ public:
 	void setVector(const Vector2f &vector);
 	const Vector2f &getVector();
 	void update();
-private:
+protected:
 	Vector2f vector;
 };
 
