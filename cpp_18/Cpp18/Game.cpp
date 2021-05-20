@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#define MAX_BALL_COUNT 10
+
 float Game::frameTime;
 
 Game::Game(RenderWindow& win) : win{ win }
@@ -31,6 +33,10 @@ void Game::update(void)
 			break;
 		}
 	}
+
+	if (balls.size() < MAX_BALL_COUNT) {
+		generateBall();
+	}
 }
 
 void Game::draw(void)
@@ -44,11 +50,11 @@ void Game::draw(void)
 
 void Game::handleEvent(Event& e)
 {
-	if (e.type == Event::KeyPressed) {
-		if (e.key.code == Keyboard::Space) {
-			generateBall();
-		}
-	}
+	//if (e.type == Event::KeyPressed) {
+	//	if (e.key.code == Keyboard::Space) {
+	//		generateBall();
+	//	}
+	//}
 
 	spPlayer.handleEvent(e);
 }
