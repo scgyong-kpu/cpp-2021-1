@@ -10,7 +10,9 @@ public:
 	const Vector2f &getVector();
 	void update();
 	bool collides(MovingSprite &sprite);
+	void setTexture(const Texture& texture);
 protected:
 	Vector2f vector;
+	Vector2u size;
 };
 

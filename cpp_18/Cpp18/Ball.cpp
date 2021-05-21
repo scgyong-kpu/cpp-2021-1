@@ -8,7 +8,7 @@ const double pi = M_PI;
 Ball::Ball(Texture& texture)
 {
 	setTexture(texture);
-	Vector2u size = texture.getSize();
+	//Vector2u size = texture.getSize();
 	Vector2f pos;
 	pos.x = (float)(Game::getRandom(WINDOW_WIDTH) - size.x / 2);
 	pos.y = (float)(Game::getRandom(WINDOW_HEIGHT) - size.y / 2);

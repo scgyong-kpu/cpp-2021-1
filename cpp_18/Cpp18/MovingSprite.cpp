@@ -22,5 +22,14 @@ void MovingSprite::update()
 
 bool MovingSprite::collides(MovingSprite& sprite)
 {
+	// box
+	// distance
+	
 	return false;
+}
+
+void MovingSprite::setTexture(const Texture& texture)
+{
+	Sprite::setTexture(texture);
+	size = texture.getSize();
 }

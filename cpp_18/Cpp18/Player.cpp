@@ -40,8 +40,8 @@ void Player::moveToCenter(void)
 	//Vector2u size = texture.getSize();
 	Vector2u size = getTexture()->getSize();
 	Vector2f pos(
-		WINDOW_WIDTH / 2 - size.x / 2, 
-		WINDOW_HEIGHT / 2 - size.y / 2
+		WINDOW_WIDTH / 2 - (float)(size.x / 2), 
+		WINDOW_HEIGHT / 2 - (float)(size.y / 2)
 	);
 	setPosition(pos);
 }
