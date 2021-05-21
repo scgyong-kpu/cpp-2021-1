@@ -52,8 +52,8 @@ void Player::update()
 	MovingSprite::update();
 	const Vector2f &pos = getPosition();
 
-	const int min_x = MARGIN, max_x = WINDOW_WIDTH - MARGIN - size.x;
-	const int min_y = MARGIN, max_y = WINDOW_HEIGHT - MARGIN - size.y;
+	const float min_x = MARGIN, max_x = WINDOW_WIDTH - MARGIN - (float)size.x;
+	const float min_y = MARGIN, max_y = WINDOW_HEIGHT - MARGIN - (float)size.y;
 
 	if (pos.x < min_x) {
 		setPosition(min_x, pos.y);

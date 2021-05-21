@@ -8,7 +8,7 @@ class MovingSprite : public Sprite
 public:
 	void setVector(const Vector2f &vector);
 	const Vector2f &getVector();
-	void update();
+	virtual void update();
 	bool collides(MovingSprite &sprite);
 	void setTexture(const Texture& texture);
 	Vector2f getCenter();
