@@ -9,6 +9,11 @@ Ball::Ball(Texture& texture)
 {
 	setTexture(texture);
 	//Vector2u size = texture.getSize();
+	float scale = Game::getRandom() * 0.5f + 0.5f;
+	setScale(scale, scale);
+	size.x = (unsigned)(size.x * scale);
+	size.y = (unsigned)(size.y * scale);
+
 	Vector2f pos;
 	pos.x = (float)(Game::getRandom(WINDOW_WIDTH) - size.x / 2);
 	pos.y = (float)(Game::getRandom(WINDOW_HEIGHT) - size.y / 2);
@@ -52,7 +57,7 @@ bool Ball::isOutOfScreen(void)
 		return true;
 	}
 
-	Vector2u size = getTexture()->getSize();
+	//Vector2u size = getTexture()->getSize();
 	if (pos.x < -(int)size.x) {
 		return true;
 	}
