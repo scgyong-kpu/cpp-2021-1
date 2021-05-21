@@ -30,11 +30,11 @@ Ball::Ball(Texture& texture)
 		if (vector.y < 0) vector.y = -vector.y;
 		break;
 	case 2:
-		pos.x = WINDOW_WIDTH - size.x / 2;
+		pos.x = WINDOW_WIDTH - size.x / 2.f;
 		if (vector.x > 0) vector.x = -vector.x;
 		break;
 	case 3: 
-		pos.y = WINDOW_HEIGHT - size.y / 2;
+		pos.y = WINDOW_HEIGHT - size.y / 2.f;
 		if (vector.y > 0) vector.y = -vector.y;
 		break;
 	}

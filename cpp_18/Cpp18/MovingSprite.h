@@ -11,6 +11,8 @@ public:
 	void update();
 	bool collides(MovingSprite &sprite);
 	void setTexture(const Texture& texture);
+	Vector2f getCenter();
+	float getRadius();
 protected:
 	Vector2f vector;
 	Vector2u size;

@@ -22,18 +22,11 @@ void MovingSprite::update()
 
 bool MovingSprite::collides(MovingSprite& sprite)
 {
-	// box
-	// distance
-	Vector2f myCenter = getPosition();
-	myCenter.x += size.x / 2;
-	myCenter.y += size.y / 2;
-	float myRadius = size.x / 2.0f;
+	Vector2f myCenter = getCenter();
+	float myRadius = getRadius();
 
-	Vector2f otherCenter = sprite.getPosition();
-	Vector2u otherSize = sprite.size;
-	otherCenter.x += otherSize.x / 2;
-	otherCenter.y += otherSize.y / 2;
-	float otherRadius = otherSize.x / 2.0f;
+	Vector2f otherCenter = sprite.getCenter();
+	float otherRadius = sprite.getRadius();
 
 	float dx = myCenter.x - otherCenter.x;
 	float dy = myCenter.y - otherCenter.y;
@@ -50,4 +43,17 @@ void MovingSprite::setTexture(const Texture& texture)
 {
 	Sprite::setTexture(texture);
 	size = texture.getSize();
+}
+
+Vector2f MovingSprite::getCenter()
+{
+	Vector2f myCenter = getPosition();
+	myCenter.x += size.x / 2;
+	myCenter.y += size.y / 2;
+	return myCenter;
+}
+
+float MovingSprite::getRadius()
+{
+	return size.x / 2.f;
 }
