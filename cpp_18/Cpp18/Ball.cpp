@@ -23,15 +23,19 @@ Ball::Ball(Texture& texture)
 	switch (side) {
 	case 0:
 		pos.x = 0;
+		if (vector.x < 0) vector.x = -vector.x;
 		break;
 	case 1:
 		pos.y = 0;
+		if (vector.y < 0) vector.y = -vector.y;
 		break;
 	case 2:
 		pos.x = WINDOW_WIDTH - size.x / 2;
+		if (vector.x > 0) vector.x = -vector.x;
 		break;
 	case 3: 
 		pos.y = WINDOW_HEIGHT - size.y / 2;
+		if (vector.y > 0) vector.y = -vector.y;
 		break;
 	}
 	setPosition(pos);
