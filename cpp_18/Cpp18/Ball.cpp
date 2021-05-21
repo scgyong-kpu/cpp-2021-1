@@ -15,6 +15,7 @@ Ball::Ball(Texture& texture)
 	int speed = Game::getRandom(100) + 100;
 	vector.x = (float)(speed * cos(angle));
 	vector.y = (float)(speed * sin(angle));
+	printf("%.2f, %.2f\n", vector.x, vector.y);
 }
 
 bool Ball::isOutOfScreen(void)

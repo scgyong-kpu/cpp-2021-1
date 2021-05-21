@@ -72,3 +72,8 @@ unsigned Game::getRandom(int bound)
 {
 	return rnd_engine() % bound;
 }
+
+float Game::getRandom(void)
+{
+	return rnd_engine() % 1000000 / 1000000.0f;
+}

@@ -23,6 +23,7 @@ public:
 
 	static float frameTime;
 	static unsigned getRandom(int bound);
+	static float getRandom(void);
 
 private:
 	RenderWindow& win;
