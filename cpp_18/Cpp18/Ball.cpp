@@ -1,6 +1,10 @@
 #include "Ball.h"
 #include "Game.h"
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+const double pi = M_PI;
+
 Ball::Ball(Texture& texture)
 {
 	setTexture(texture);
@@ -8,13 +12,29 @@ Ball::Ball(Texture& texture)
 	Vector2f pos;
 	pos.x = (float)(Game::getRandom(WINDOW_WIDTH) - size.x / 2);
 	pos.y = (float)(Game::getRandom(WINDOW_HEIGHT) - size.y / 2);
-	setPosition(pos);
 
-	const double pi = atan(1) * 4;
-	double angle = (Game::getRandom(10000) / 10000.0) * 2 * pi;
+	//const double pi = atan(1) * 4;
+	double angle = (double)Game::getRandom() * 2 * pi;
 	int speed = Game::getRandom(100) + 100;
 	vector.x = (float)(speed * cos(angle));
 	vector.y = (float)(speed * sin(angle));
+
+	int side = Game::getRandom(4);
+	switch (side) {
+	case 0:
+		pos.x = 0;
+		break;
+	case 1:
+		pos.y = 0;
+		break;
+	case 2:
+		pos.x = WINDOW_WIDTH - size.x / 2;
+		break;
+	case 3: 
+		pos.y = WINDOW_HEIGHT - size.y / 2;
+		break;
+	}
+	setPosition(pos);
 	printf("%.2f, %.2f\n", vector.x, vector.y);
 }
 
