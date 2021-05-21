@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Game.h"
 
 #define SPEED 300
 
@@ -31,4 +32,16 @@ void Player::handleEvent(Event& e)
 			if (vector.y >= 0) vector.y -= SPEED;
 		}
 	}
+}
+
+void Player::moveToCenter(void)
+{
+	//const Texture& texture = *getTexture();
+	//Vector2u size = texture.getSize();
+	Vector2u size = getTexture()->getSize();
+	Vector2f pos(
+		WINDOW_WIDTH / 2 - size.x / 2, 
+		WINDOW_HEIGHT / 2 - size.y / 2
+	);
+	setPosition(pos);
 }

@@ -4,5 +4,6 @@ class Player : public MovingSprite
 {
 public:
 	void handleEvent(Event& e);
+	void moveToCenter(void);
 };
 

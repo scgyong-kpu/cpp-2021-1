@@ -12,12 +12,7 @@ Game::Game(RenderWindow& win) : win{ win }
 	txPlayer.loadFromFile("res/player.png");
 	spPlayer.setTexture(txPlayer);
 
-	Vector2u size = txPlayer.getSize();
-	Vector2f pos(
-		WINDOW_WIDTH / 2 - size.x / 2, 
-		WINDOW_HEIGHT / 2 - size.y / 2
-	);
-	spPlayer.setPosition(pos);
+	spPlayer.moveToCenter();
 
 	txBall.loadFromFile("res/missile.png");
 }
