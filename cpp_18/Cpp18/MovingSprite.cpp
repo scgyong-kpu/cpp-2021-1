@@ -19,3 +19,8 @@ void MovingSprite::update()
 	float dy = vector.y * Game::frameTime;
 	move(dx, dy);
 }
+
+bool MovingSprite::collides(MovingSprite& sprite)
+{
+	return false;
+}

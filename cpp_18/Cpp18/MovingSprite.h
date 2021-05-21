@@ -9,6 +9,7 @@ public:
 	void setVector(const Vector2f &vector);
 	const Vector2f &getVector();
 	void update();
+	bool collides(MovingSprite &sprite);
 protected:
 	Vector2f vector;
 };

@@ -29,9 +29,15 @@ void Game::update(void)
 	}
 
 	for (auto it = balls.begin(); it != balls.end(); it++) {
-		if (it->isOutOfScreen()) {
+		Ball &ball = *it;
+		if (ball.isOutOfScreen()) {
 			balls.erase(it);
 			printf("[-]Ball count = %d\n", balls.size());
+			break;
+		}
+		if (spPlayer.collides(ball)) {
+			balls.erase(it);
+			printf("[Collision !!!] %d\n", balls.size());
 			break;
 		}
 	}
