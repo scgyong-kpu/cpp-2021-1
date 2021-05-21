@@ -39,7 +39,7 @@ bool MovingSprite::collides(MovingSprite& sprite)
 	float dy = myCenter.y - otherCenter.y;
 	double dist_sq = (double)dx * dx + (double)dy * dy;
 	double radius_sum = (double)myRadius + otherRadius;
-	if (sqrt(dist_sq) < radius_sum) {
+	if (dist_sq < (radius_sum * radius_sum)) {
 		return true;
 	}
 
