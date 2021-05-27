@@ -14,7 +14,6 @@ Player::Player()
 
 	moveToCenter();
 
-	life = PLAYER_FULL_LIFE;
 	whiteHeartTexture.loadFromFile("res/heart_white.png");
 	redHeartTexture.loadFromFile("res/heart_red.png");
 
@@ -24,8 +23,11 @@ Player::Player()
 	for (int i = 0; i < PLAYER_FULL_LIFE; i++) {
 		x -= w;
 		hearts[i].setPosition(x, y);
-		hearts[i].setTexture(redHeartTexture);
+		//hearts[i].setTexture(redHeartTexture);
 	}
+
+	life = PLAYER_FULL_LIFE;
+	updateHearts();
 }
 
 void Player::draw(RenderWindow& win)
