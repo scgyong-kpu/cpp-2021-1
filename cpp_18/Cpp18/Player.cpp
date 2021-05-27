@@ -18,8 +18,8 @@ Player::Player()
 	whiteHeartTexture.loadFromFile("res/heart_white.png");
 	redHeartTexture.loadFromFile("res/heart_red.png");
 
-	int x = WINDOW_WIDTH - SCORE_MARGIN_RIGHT;
-	int y = SCORE_MARGIN_TOP;
+	float x = WINDOW_WIDTH - SCORE_MARGIN_RIGHT;
+	float y = SCORE_MARGIN_TOP;
 	int w = redHeartTexture.getSize().x;
 	for (int i = 0; i < PLAYER_FULL_LIFE; i++) {
 		x -= w;
@@ -101,3 +101,18 @@ void Player::update()
 		setPosition(pos.x, max_y);
 	}
 }
+
+bool Player::decreaseLife()
+{
+	life--;
+	updateHearts();
+	return life > 0;
+}
+
+void Player::updateHearts()
+{
+	for (int i = 0; i < PLAYER_FULL_LIFE; i++) {
+		hearts[i].setTexture(i < life ? redHeartTexture : whiteHeartTexture);
+	}
+}
+

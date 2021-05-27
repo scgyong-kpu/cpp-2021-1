@@ -16,5 +16,9 @@ public:
 	void handleEvent(Event& e);
 	void moveToCenter(void);
 	virtual void update();
+	bool decreaseLife();
+
+private:
+	void updateHearts();
 };
 

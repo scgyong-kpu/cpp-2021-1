@@ -31,8 +31,13 @@ void Game::update(void)
 			break;
 		}
 		if (spPlayer.collides(ball)) {
-			balls.erase(it);
 			printf("[Collision !!!] %d\n", balls.size());
+			balls.erase(it);
+			bool alive = spPlayer.decreaseLife();
+			if (!alive) {
+				printf("Dead. Gameover screen should follow\n");
+				break;
+			}
 			break;
 		}
 	}
