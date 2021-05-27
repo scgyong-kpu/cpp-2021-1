@@ -32,7 +32,6 @@ private:
 	Texture txBg;
 
 	Player spPlayer;
-	Texture txPlayer;
 
 	std::vector<Ball> balls;
 	Texture txBall;

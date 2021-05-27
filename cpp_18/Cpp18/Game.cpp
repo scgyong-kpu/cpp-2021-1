@@ -9,11 +9,6 @@ Game::Game(RenderWindow& win) : win{ win }
 	txBg.loadFromFile("res/outerspace.png");
 	spBg.setTexture(txBg);
 
-	txPlayer.loadFromFile("res/player.png");
-	spPlayer.setTexture(txPlayer);
-
-	spPlayer.moveToCenter();
-
 	txBall.loadFromFile("res/missile.png");
 }
 

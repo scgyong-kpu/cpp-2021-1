@@ -4,6 +4,16 @@
 #define SPEED 300
 #define MARGIN 20
 
+Player::Player()
+{
+	texture.loadFromFile("res/player.png");
+	setTexture(texture);
+
+	moveToCenter();
+
+	life = PLAYER_FULL_LIFE;
+}
+
 void Player::handleEvent(Event& e)
 {
 	if (e.type == Event::KeyPressed) {
