@@ -10,6 +10,7 @@ class Player : public MovingSprite
 
 public:
 	Player();
+	void draw(RenderWindow& win);
 	void handleEvent(Event& e);
 	void moveToCenter(void);
 	virtual void update();

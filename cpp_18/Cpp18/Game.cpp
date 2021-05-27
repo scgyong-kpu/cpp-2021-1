@@ -48,7 +48,8 @@ void Game::draw(void)
 	for (auto& ball : balls) {
 		win.draw(ball);
 	}
-	win.draw(spPlayer);
+	spPlayer.draw(win);
+	//win.draw(spPlayer);
 }
 
 void Game::handleEvent(Event& e)

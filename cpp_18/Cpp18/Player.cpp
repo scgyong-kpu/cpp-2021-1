@@ -14,6 +14,11 @@ Player::Player()
 	life = PLAYER_FULL_LIFE;
 }
 
+void Player::draw(RenderWindow& win)
+{
+	win.draw(*this);
+}
+
 void Player::handleEvent(Event& e)
 {
 	if (e.type == Event::KeyPressed) {
