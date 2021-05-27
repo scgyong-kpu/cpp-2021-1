@@ -7,6 +7,8 @@ class Player : public MovingSprite
 {
 	int life;
 	Texture texture;
+	Texture redHeartTexture, whiteHeartTexture;
+	Sprite hearts[PLAYER_FULL_LIFE];
 
 public:
 	Player();

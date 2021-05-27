@@ -4,6 +4,9 @@
 #define SPEED 300
 #define MARGIN 20
 
+#define SCORE_MARGIN_RIGHT 15
+#define SCORE_MARGIN_TOP   15
+
 Player::Player()
 {
 	texture.loadFromFile("res/player.png");
@@ -12,11 +15,25 @@ Player::Player()
 	moveToCenter();
 
 	life = PLAYER_FULL_LIFE;
+	whiteHeartTexture.loadFromFile("res/heart_white.png");
+	redHeartTexture.loadFromFile("res/heart_red.png");
+
+	int x = WINDOW_WIDTH - SCORE_MARGIN_RIGHT;
+	int y = SCORE_MARGIN_TOP;
+	int w = redHeartTexture.getSize().x;
+	for (int i = 0; i < PLAYER_FULL_LIFE; i++) {
+		x -= w;
+		hearts[i].setPosition(x, y);
+		hearts[i].setTexture(redHeartTexture);
+	}
 }
 
 void Player::draw(RenderWindow& win)
 {
 	win.draw(*this);
+	for (auto &heart: hearts) {
+		win.draw(heart);
+	}
 }
 
 void Player::handleEvent(Event& e)
