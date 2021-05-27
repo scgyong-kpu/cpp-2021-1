@@ -111,6 +111,16 @@ bool Player::decreaseLife()
 	return life > 0;
 }
 
+bool Player::increaseLife()
+{
+	if (life >= PLAYER_FULL_LIFE) {
+		return false;
+	}
+	life++;
+	updateHearts();
+	return true;
+}
+
 void Player::updateHearts()
 {
 	for (int i = 0; i < PLAYER_FULL_LIFE; i++) {

@@ -19,13 +19,15 @@ public:
 	void update(void);
 	void draw(void);
 	void handleEvent(Event& e);
-	void generateBall(void);
 
 	static float frameTime;
 	static unsigned getRandom(int bound);
 	static float getRandom(void);
 
 private:
+	void generateBall(void);
+	void generateItem(void);
+
 	RenderWindow& win;
 
 	Sprite spBg;
@@ -36,6 +38,9 @@ private:
 
 	std::vector<Ball> balls;
 	Texture txBall;
+
+	std::vector<Ball> items;
+	Texture txItem;
 
 	Sprite spGameOver;
 	Texture txGameOver;

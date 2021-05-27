@@ -17,6 +17,7 @@ public:
 	void moveToCenter(void);
 	virtual void update();
 	bool decreaseLife();
+	bool increaseLife();
 
 private:
 	void updateHearts();

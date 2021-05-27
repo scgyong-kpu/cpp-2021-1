@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #define MAX_BALL_COUNT 10
+#define MAX_ITEM_COUNT 3
 
 float Game::frameTime;
 
@@ -10,6 +11,7 @@ Game::Game(RenderWindow& win) : win{ win }
 	spBg.setTexture(txBg);
 
 	txBall.loadFromFile("res/missile.png");
+	txItem.loadFromFile("res/item.png");
 
 	txGameOver.loadFromFile("res/game_over.png");
 	spGameOver.setTexture(txGameOver);
@@ -36,6 +38,9 @@ void Game::update(void)
 	for (auto& ball : balls) {
 		ball.update();
 	}
+	for (auto& item : items) {
+		item.update();
+	}
 
 	for (auto it = balls.begin(); it != balls.end(); it++) {
 		Ball &ball = *it;
@@ -51,7 +56,23 @@ void Game::update(void)
 			if (!alive) {
 				inPlay = false;
 				printf("Dead.\n");
-				break;
+			}
+			break;
+		}
+	}
+
+	for (auto it = items.begin(); it != items.end(); it++) {
+		Ball& item = *it;
+		if (item.isOutOfScreen()) {
+			items.erase(it);
+			break;
+		}
+		if (spPlayer.collides(item)) {
+			printf("[Collision !!!] %d\n", items.size());
+			items.erase(it);
+			bool increased = spPlayer.increaseLife();
+			if (!increased) {
+				printf("Already Full Life.\n");
 			}
 			break;
 		}
@@ -60,6 +81,9 @@ void Game::update(void)
 	if (balls.size() < MAX_BALL_COUNT) {
 		generateBall();
 	}
+	if (items.size() < MAX_ITEM_COUNT) {
+		generateItem();
+	}
 }
 
 void Game::draw(void)
@@ -67,6 +91,9 @@ void Game::draw(void)
 	win.draw(spBg);
 	for (auto& ball : balls) {
 		win.draw(ball);
+	}
+	for (auto& item : items) {
+		win.draw(item);
 	}
 	spPlayer.draw(win);
 
@@ -93,6 +120,12 @@ void Game::generateBall(void)
 	Ball ball(txBall);
 	balls.push_back(ball);
 	printf("[+]Ball count = %d\n", balls.size());
+}
+
+void Game::generateItem(void)
+{
+	Ball item(txItem);
+	items.push_back(item);
 }
 
 static std::mt19937 rnd_engine;
