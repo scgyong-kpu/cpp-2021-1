@@ -10,10 +10,24 @@ Game::Game(RenderWindow& win) : win{ win }
 	spBg.setTexture(txBg);
 
 	txBall.loadFromFile("res/missile.png");
+
+	txGameOver.loadFromFile("res/game_over.png");
+	spGameOver.setTexture(txGameOver);
+	Vector2u size = txGameOver.getSize();
+	spGameOver.setPosition(
+		(WINDOW_WIDTH - size.x) / 2.0f,
+		(WINDOW_HEIGHT - size.y) / 2.0f
+	);
+
+	inPlay = true;
 }
 
 void Game::update(void)
 {
+	if (!inPlay) {
+		return;
+	}
+
 	Time diff = clock.restart();
 	frameTime = diff.asSeconds();
 
@@ -35,7 +49,8 @@ void Game::update(void)
 			balls.erase(it);
 			bool alive = spPlayer.decreaseLife();
 			if (!alive) {
-				printf("Dead. Gameover screen should follow\n");
+				inPlay = false;
+				printf("Dead.\n");
 				break;
 			}
 			break;
@@ -54,6 +69,11 @@ void Game::draw(void)
 		win.draw(ball);
 	}
 	spPlayer.draw(win);
+
+	if (!inPlay) {
+		win.draw(spGameOver);
+		//draw gameover sprite
+	}
 	//win.draw(spPlayer);
 }
 
