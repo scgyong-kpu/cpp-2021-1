@@ -69,6 +69,13 @@ void Player::handleEvent(Event& e)
 	}
 }
 
+void Player::reset(void)
+{
+	life = PLAYER_FULL_LIFE;
+	updateHearts();
+	moveToCenter();
+}
+
 void Player::moveToCenter(void)
 {
 	//const Texture& texture = *getTexture();

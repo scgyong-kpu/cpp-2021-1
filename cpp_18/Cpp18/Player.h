@@ -14,6 +14,7 @@ public:
 	Player();
 	void draw(RenderWindow& win);
 	void handleEvent(Event& e);
+	void reset(void);
 	void moveToCenter(void);
 	virtual void update();
 	bool decreaseLife();

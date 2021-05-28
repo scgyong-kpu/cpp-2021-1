@@ -25,6 +25,7 @@ public:
 	static float getRandom(void);
 
 private:
+	void startGame(void);
 	void generateBall(void);
 	void generateItem(void);
 
