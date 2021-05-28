@@ -5,7 +5,7 @@
 #include <math.h>
 const double pi = M_PI;
 
-Ball::Ball(Texture& texture, bool randomSized)
+Ball::Ball(Texture& texture, float speedRate, bool randomSized)
 {
 	setTexture(texture);
 	//Vector2u size = texture.getSize();
@@ -22,7 +22,7 @@ Ball::Ball(Texture& texture, bool randomSized)
 
 	//const double pi = atan(1) * 4;
 	double angle = (double)Game::getRandom() * 2 * pi;
-	int speed = Game::getRandom(100) + 100;
+	double speed = speedRate * (Game::getRandom(100) + 100);
 	vector.x = (float)(speed * cos(angle));
 	vector.y = (float)(speed * sin(angle));
 

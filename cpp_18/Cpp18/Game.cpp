@@ -1,8 +1,8 @@
 #include "Game.h"
 #pragma warning(disable: 4996)
 
-#define MAX_BALL_COUNT 10
-#define MAX_ITEM_COUNT 3
+#define INITIAL_MAX_BALL_COUNT 10
+#define MAX_ITEM_COUNT 3u
 
 float Game::frameTime;
 
@@ -29,6 +29,8 @@ Game::Game(RenderWindow& win) : win{ win }
 	scoreText.setStyle(Text::Bold);
 	scoreText.setFillColor(Color::White);
 	scoreText.setPosition(20.0f, 20.0f);
+
+	//maxBallCount = INITIAL_MAX_BALL_COUNT;
 
 	inPlay = true;
 }
@@ -84,13 +86,15 @@ void Game::update(void)
 			items.erase(it);
 			bool increased = spPlayer.increaseLife();
 			if (!increased) {
-				printf("Already Full Life.\n");
+				scoreValue += 5.0f;
+				updateScore();
 			}
 			break;
 		}
 	}
 
-	if (balls.size() < MAX_BALL_COUNT) {
+	unsigned maxBallCout = INITIAL_MAX_BALL_COUNT + (int)(scoreValue / 10);
+	if (balls.size() < maxBallCout) {
 		generateBall();
 	}
 	if (items.size() < MAX_ITEM_COUNT) {
@@ -141,14 +145,15 @@ void Game::startGame(void)
 
 void Game::generateBall(void)
 {
-	Ball ball(txBall);
+	float rate = 1.0f + scoreValue / 60.0f;
+	Ball ball(txBall, rate, true);
 	balls.push_back(ball);
 	printf("[+]Ball count = %d\n", balls.size());
 }
 
 void Game::generateItem(void)
 {
-	Ball item(txItem, false);
+	Ball item(txItem, 1.0f, false);
 	items.push_back(item);
 }
 

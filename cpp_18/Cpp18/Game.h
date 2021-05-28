@@ -47,6 +47,7 @@ private:
 	Sprite spGameOver;
 	Texture txGameOver;
 
+	//int maxBallCount;
 	float scoreValue;
 	Font scoreFont;
 	Text scoreText;
