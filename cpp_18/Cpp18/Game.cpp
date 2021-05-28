@@ -1,4 +1,5 @@
 #include "Game.h"
+#pragma warning(disable: 4996)
 
 #define MAX_BALL_COUNT 10
 #define MAX_ITEM_COUNT 3
@@ -21,12 +22,13 @@ Game::Game(RenderWindow& win) : win{ win }
 		(WINDOW_HEIGHT - size.y) / 2.0f
 	);
 
-	scoreFont.loadFromFile("res/Candarab.ttf");
+	scoreFont.loadFromFile("res/lucon.ttf");
 	scoreText.setString("Hello world");
 	scoreText.setFont(scoreFont);
-	scoreText.setCharacterSize(50);
+	scoreText.setCharacterSize(35);
 	scoreText.setStyle(Text::Bold);
-	scoreText.setFillColor(Color::Blue);
+	scoreText.setFillColor(Color::White);
+	scoreText.setPosition(20.0f, 20.0f);
 
 	inPlay = true;
 }
@@ -39,6 +41,9 @@ void Game::update(void)
 
 	Time diff = clock.restart();
 	frameTime = diff.asSeconds();
+
+	scoreValue += frameTime;
+	updateScore();
 
 	spPlayer.update();
 
@@ -109,8 +114,6 @@ void Game::draw(void)
 		//draw gameover sprite
 	}
 	win.draw(scoreText);
-
-	//win.draw(spPlayer);
 }
 
 void Game::handleEvent(Event& e)
@@ -132,6 +135,7 @@ void Game::startGame(void)
 	balls.clear();
 	items.clear();
 	spPlayer.reset();
+	scoreValue = 0.0f;
 	inPlay = true;
 }
 
@@ -146,6 +150,13 @@ void Game::generateItem(void)
 {
 	Ball item(txItem, false);
 	items.push_back(item);
+}
+
+void Game::updateScore(void)
+{
+	char buff[30];
+	sprintf(buff, "Score: %.1f", scoreValue);
+	scoreText.setString(buff);
 }
 
 static std::mt19937 rnd_engine;

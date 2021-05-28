@@ -28,6 +28,7 @@ private:
 	void startGame(void);
 	void generateBall(void);
 	void generateItem(void);
+	void updateScore(void);
 
 	RenderWindow& win;
 
@@ -46,6 +47,7 @@ private:
 	Sprite spGameOver;
 	Texture txGameOver;
 
+	float scoreValue;
 	Font scoreFont;
 	Text scoreText;
 
