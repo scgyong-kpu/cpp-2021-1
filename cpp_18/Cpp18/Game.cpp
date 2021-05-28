@@ -21,6 +21,13 @@ Game::Game(RenderWindow& win) : win{ win }
 		(WINDOW_HEIGHT - size.y) / 2.0f
 	);
 
+	scoreFont.loadFromFile("res/Candarab.ttf");
+	scoreText.setString("Hello world");
+	scoreText.setFont(scoreFont);
+	scoreText.setCharacterSize(50);
+	scoreText.setStyle(Text::Bold);
+	scoreText.setFillColor(Color::Blue);
+
 	inPlay = true;
 }
 
@@ -101,6 +108,8 @@ void Game::draw(void)
 		win.draw(spGameOver);
 		//draw gameover sprite
 	}
+	win.draw(scoreText);
+
 	//win.draw(spPlayer);
 }
 

@@ -46,6 +46,9 @@ private:
 	Sprite spGameOver;
 	Texture txGameOver;
 
+	Font scoreFont;
+	Text scoreText;
+
 	Clock clock;
 };
 
