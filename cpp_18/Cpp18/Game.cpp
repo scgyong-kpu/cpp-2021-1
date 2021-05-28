@@ -37,12 +37,12 @@ Game::Game(RenderWindow& win) : win{ win }
 
 void Game::update(void)
 {
+	Time diff = clock.restart();
+	frameTime = diff.asSeconds();
+
 	if (!inPlay) {
 		return;
 	}
-
-	Time diff = clock.restart();
-	frameTime = diff.asSeconds();
 
 	scoreValue += frameTime;
 	updateScore();
