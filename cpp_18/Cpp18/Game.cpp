@@ -124,7 +124,7 @@ void Game::generateBall(void)
 
 void Game::generateItem(void)
 {
-	Ball item(txItem);
+	Ball item(txItem, false);
 	items.push_back(item);
 }
 

@@ -5,14 +5,16 @@
 #include <math.h>
 const double pi = M_PI;
 
-Ball::Ball(Texture& texture)
+Ball::Ball(Texture& texture, bool randomSized)
 {
 	setTexture(texture);
 	//Vector2u size = texture.getSize();
-	float scale = Game::getRandom() * 0.5f + 0.5f;
-	setScale(scale, scale);
-	size.x = (unsigned)(size.x * scale);
-	size.y = (unsigned)(size.y * scale);
+	if (randomSized) {
+		float scale = Game::getRandom() * 0.5f + 0.5f;
+		setScale(scale, scale);
+		size.x = (unsigned)(size.x * scale);
+		size.y = (unsigned)(size.y * scale);
+	}
 
 	Vector2f pos;
 	pos.x = (float)(Game::getRandom(WINDOW_WIDTH) - size.x / 2);
