@@ -1,8 +1,10 @@
 #include "Highscore.h"
 #include "Game.h"
 #include <fstream>
+#include <iostream>
 
 #define SCORE_FILENAME "score.dat"
+#define MAX_SCORE_LIST 5
 
 Highscore::Highscore()
 {
@@ -28,6 +30,9 @@ void Highscore::add(float score)
 	if (!inserted) {
 		scores.push_back(e);
 	}
+	if (scores.size() > MAX_SCORE_LIST) {
+		scores.pop_back();
+	}
 
 	save();
 	//printf("Scores now stores %d entries\n", scores.size());
@@ -46,6 +51,18 @@ void Highscore::save() const
 
 void Highscore::load()
 {
+	std::ifstream file{ SCORE_FILENAME };
+	if (!file) {
+		std::cout << SCORE_FILENAME << " not found" << std::endl;
+		return;
+	}
+	scores.clear();
+
+	ScoreEntry e;
+	while (file >> e.time >> e.score) {
+		std::cout << e.time << ' ' << e.score << std::endl;
+		scores.push_back(e);
+	}
 }
 
 void Highscore::draw(RenderTarget& target, RenderStates states) const
