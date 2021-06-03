@@ -1,10 +1,12 @@
 #pragma once
+#pragma warning(disable: 4996)
 
 #include <SFML/Graphics.hpp>
 #include <random>
 #include "MovingSprite.h"
 #include "Ball.h"
 #include "Player.h"
+#include "Highscore.h"
 
 using namespace sf;
 
@@ -31,6 +33,8 @@ private:
 	void updateScore(void);
 
 	RenderWindow& win;
+
+	Highscore highscore;
 
 	Sprite spBg;
 	Texture txBg;

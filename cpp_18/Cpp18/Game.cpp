@@ -1,12 +1,11 @@
 #include "Game.h"
-#pragma warning(disable: 4996)
 
 #define INITIAL_MAX_BALL_COUNT 10
 #define MAX_ITEM_COUNT 3u
 
 float Game::frameTime;
 
-Game::Game(RenderWindow& win) : win{ win }
+Game::Game(RenderWindow& win) : win{ win }, scoreValue { 0 }
 {
 	txBg.loadFromFile("res/outerspace.png");
 	spBg.setTexture(txBg);
@@ -69,6 +68,7 @@ void Game::update(void)
 			bool alive = spPlayer.decreaseLife();
 			if (!alive) {
 				inPlay = false;
+				highscore.add(scoreValue);
 				printf("Dead.\n");
 			}
 			break;
@@ -116,6 +116,9 @@ void Game::draw(void)
 	if (!inPlay) {
 		win.draw(spGameOver);
 		//draw gameover sprite
+
+		win.draw(highscore);
+		//highscore.draw(win);
 	}
 	win.draw(scoreText);
 }
