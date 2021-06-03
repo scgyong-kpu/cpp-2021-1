@@ -11,7 +11,20 @@ void Highscore::add(float score)
 	ScoreEntry e;
 	e.time = time(NULL);
 	e.score = score;
-	scores.push_back(e);
+	//scores.push_back(e);
+
+	bool inserted = false;
+	for (auto it = scores.begin(); it != scores.end(); it++) {
+		if (score > it->score) {
+			scores.insert(it, e);
+			inserted = true;
+			break;
+		}
+	}
+	if (!inserted) {
+		scores.push_back(e);
+	}
+
 	printf("Scores now stores %d entries\n", scores.size());
 }
 
