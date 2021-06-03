@@ -1,9 +1,13 @@
 #include "Highscore.h"
 #include "Game.h"
+#include <fstream>
+
+#define SCORE_FILENAME "score.dat"
 
 Highscore::Highscore()
 {
 	font.loadFromFile("res/lucon.ttf");
+	load();
 }
 
 void Highscore::add(float score)
@@ -25,11 +29,19 @@ void Highscore::add(float score)
 		scores.push_back(e);
 	}
 
-	printf("Scores now stores %d entries\n", scores.size());
+	save();
+	//printf("Scores now stores %d entries\n", scores.size());
 }
 
 void Highscore::save() const
 {
+	std::ofstream file{ SCORE_FILENAME };
+	if (!file) {
+		return;
+	}
+	for (auto it = scores.begin(); it != scores.end(); it++) {
+		file << it->time << " " << it->score << std::endl;
+	}
 }
 
 void Highscore::load()
