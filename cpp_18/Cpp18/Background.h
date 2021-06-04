@@ -11,9 +11,8 @@ class Background: public Sprite
 public:
 	Background();
 	void update();
-	//void draw(RenderWindow& win);
 	void setPlayer(Player& player);
-	void drawStars(RenderWindow& win);
+	void draw(RenderWindow& win);
 
 protected:
 	Player* player;

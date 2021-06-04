@@ -107,8 +107,8 @@ void Game::update(void)
 
 void Game::draw(void)
 {
-	win.draw(background);
-	background.drawStars(win);
+	//win.draw(background);
+	background.draw(win);
 
 	for (auto& ball : balls) {
 		win.draw(ball);
