@@ -13,9 +13,13 @@ public:
 	void update();
 	//void draw(RenderWindow& win);
 	void setPlayer(Player& player);
+	void drawStars(RenderWindow& win);
 
 protected:
 	Player* player;
 	Texture txOuterspace;
+
+	Sprite spStars;
+	Texture txStars;
 };
 
