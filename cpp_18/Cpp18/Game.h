@@ -15,6 +15,12 @@ using namespace sf;
 #define WINDOW_HEIGHT 600
 #define WINDOW_TITLE "Dodge Game 2021"
 
+enum GameState {
+	GameState_Ready,
+	GameState_InPlay,
+	GameSatet_GameOver
+};
+
 class Game
 {
 public:
@@ -40,7 +46,7 @@ private:
 	Background background;
 
 	Player spPlayer;
-	bool inPlay;
+	GameState gameState;
 
 	std::vector<Ball> balls;
 	Texture txBall;

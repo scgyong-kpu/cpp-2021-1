@@ -33,7 +33,7 @@ Game::Game(RenderWindow& win)
 
 	//spBg.move(-500, 0);
 
-	inPlay = true;
+	gameState = GameState_InPlay;
 }
 
 void Game::update(void)
@@ -41,7 +41,7 @@ void Game::update(void)
 	Time diff = clock.restart();
 	frameTime = diff.asSeconds();
 
-	if (!inPlay) {
+	if (gameState != GameState_InPlay) {
 		return;
 	}
 
@@ -70,7 +70,7 @@ void Game::update(void)
 			balls.erase(it);
 			bool alive = spPlayer.decreaseLife();
 			if (!alive) {
-				inPlay = false;
+				gameState = GameSatet_GameOver;
 				highscore.add(scoreValue);
 				printf("Dead.\n");
 			}
@@ -118,7 +118,7 @@ void Game::draw(void)
 	}
 	spPlayer.draw(win);
 
-	if (!inPlay) {
+	if (gameState == GameSatet_GameOver) {
 		win.draw(spGameOver);
 		//draw gameover sprite
 
@@ -132,7 +132,7 @@ void Game::handleEvent(Event& e)
 {
 	if (e.type == Event::KeyPressed) {
 		if (e.key.code == Keyboard::Enter) {
-			if (!inPlay) {
+			if (gameState == GameSatet_GameOver) {
 				startGame();
 			}
 		}
@@ -148,7 +148,7 @@ void Game::startGame(void)
 	items.clear();
 	spPlayer.reset();
 	scoreValue = 0.0f;
-	inPlay = true;
+	gameState = GameState_InPlay;
 }
 
 void Game::generateBall(void)
