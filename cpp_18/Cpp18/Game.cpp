@@ -33,7 +33,7 @@ Game::Game(RenderWindow& win)
 
 	//spBg.move(-500, 0);
 
-	gameState = GameState_InPlay;
+	gameState = GameState_Ready;
 }
 
 void Game::update(void)
