@@ -7,6 +7,7 @@
 #include "Ball.h"
 #include "Player.h"
 #include "Highscore.h"
+#include "Background.h"
 
 using namespace sf;
 
@@ -36,8 +37,7 @@ private:
 
 	Highscore highscore;
 
-	Sprite spBg;
-	Texture txBg;
+	Background background;
 
 	Player spPlayer;
 	bool inPlay;

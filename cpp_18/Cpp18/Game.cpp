@@ -5,11 +5,9 @@
 
 float Game::frameTime;
 
-Game::Game(RenderWindow& win) : win{ win }, scoreValue { 0 }
+Game::Game(RenderWindow& win) 
+	: win{ win }, scoreValue { 0 }
 {
-	txBg.loadFromFile("res/outerspace.png");
-	spBg.setTexture(txBg);
-
 	txBall.loadFromFile("res/missile.png");
 	txItem.loadFromFile("res/item.png");
 
@@ -30,6 +28,8 @@ Game::Game(RenderWindow& win) : win{ win }, scoreValue { 0 }
 	scoreText.setPosition(20.0f, 20.0f);
 
 	//maxBallCount = INITIAL_MAX_BALL_COUNT;
+
+	//spBg.move(-500, 0);
 
 	inPlay = true;
 }
@@ -104,7 +104,7 @@ void Game::update(void)
 
 void Game::draw(void)
 {
-	win.draw(spBg);
+	win.draw(background);
 	for (auto& ball : balls) {
 		win.draw(ball);
 	}
