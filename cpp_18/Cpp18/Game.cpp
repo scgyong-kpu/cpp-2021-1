@@ -8,6 +8,8 @@ float Game::frameTime;
 Game::Game(RenderWindow& win) 
 	: win{ win }, scoreValue { 0 }
 {
+	background.setPlayer(spPlayer);
+
 	txBall.loadFromFile("res/missile.png");
 	txItem.loadFromFile("res/item.png");
 
@@ -47,6 +49,7 @@ void Game::update(void)
 	updateScore();
 
 	spPlayer.update();
+	background.update();
 
 	for (auto& ball : balls) {
 		ball.update();
