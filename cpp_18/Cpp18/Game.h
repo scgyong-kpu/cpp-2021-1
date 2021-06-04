@@ -21,6 +21,14 @@ enum GameState {
 	GameSatet_GameOver
 };
 
+enum GameLevel {
+	Level_Easy,
+	Level_Medium,
+	Level_Hard,
+	Level_Insane,
+	Level_Count
+};
+
 class Game
 {
 public:
@@ -39,7 +47,7 @@ private:
 	void generateBall(void);
 	void generateItem(void);
 	void updateScore(void);
-
+	void updateLevelString(void);
 	RenderWindow& win;
 
 	Highscore highscore;
@@ -62,6 +70,8 @@ private:
 	float scoreValue;
 	Font scoreFont;
 	Text scoreText;
+
+	GameLevel level;
 
 	Clock clock;
 };

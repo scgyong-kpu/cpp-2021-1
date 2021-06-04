@@ -6,7 +6,7 @@
 float Game::frameTime;
 
 Game::Game(RenderWindow& win) 
-	: win{ win }, scoreValue { 0 }
+	: win{ win }, scoreValue{ 0 }, level{ GameLevel::Level_Easy }
 {
 	background.setPlayer(spPlayer);
 
@@ -131,12 +131,24 @@ void Game::draw(void)
 
 void Game::handleEvent(Event& e)
 {
-	if (e.type == Event::KeyPressed) {
-		if (e.key.code == Keyboard::Enter) {
-			if (gameState == GameState_Ready) {
+	if (gameState == GameState_Ready) {
+		if (e.type == Event::KeyPressed) {
+			if (e.key.code == Keyboard::Enter) {
 				startGame();
 			}
-			else if (gameState == GameSatet_GameOver) {
+			else if (e.key.code == Keyboard::Up) {
+				level = (GameLevel)((level + 1) % Level_Count);
+				updateLevelString();
+			}
+			else if (e.key.code == Keyboard::Down) {
+				level = (GameLevel)((level + Level_Count - 1) % Level_Count);
+				updateLevelString();
+			}
+		}
+	}
+	if (e.type == Event::KeyPressed) {
+		if (e.key.code == Keyboard::Enter) {
+			if (gameState == GameSatet_GameOver) {
 				readyGame();
 			}
 		}
@@ -148,7 +160,7 @@ void Game::handleEvent(Event& e)
 
 void Game::startGame(void)
 {
-	scoreValue = 0.0f;
+	scoreValue = (int)level * 30.0f;
 	gameState = GameState_InPlay;
 }
 
@@ -157,7 +169,7 @@ void Game::readyGame(void)
 	balls.clear();
 	items.clear();
 	spPlayer.reset();
-	scoreText.setString("1:Easy 2:Normal 3:Hard 4:Insane");
+	updateLevelString();
 	gameState = GameState_Ready;
 }
 
@@ -180,6 +192,26 @@ void Game::updateScore(void)
 	char buff[30];
 	sprintf(buff, "Score: %.1f", scoreValue);
 	scoreText.setString(buff);
+}
+
+void Game::updateLevelString(void)
+{
+	const char* strLevel = "";
+	switch (level) {
+	case Level_Easy: 
+		strLevel = "Level: Easy";
+		break;
+	case Level_Medium:
+		strLevel = "Level: Medium";
+		break;
+	case Level_Hard:
+		strLevel = "Level: Hard";
+		break;
+	case Level_Insane:
+		strLevel = "Level: Insane";
+		break;
+	}
+	scoreText.setString(strLevel);
 }
 
 static std::mt19937 rnd_engine;
