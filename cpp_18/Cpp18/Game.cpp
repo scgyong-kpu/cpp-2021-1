@@ -33,7 +33,8 @@ Game::Game(RenderWindow& win)
 
 	//spBg.move(-500, 0);
 
-	gameState = GameState_Ready;
+	//gameState = GameState_Ready;
+	readyGame();
 }
 
 void Game::update(void)
@@ -132,8 +133,11 @@ void Game::handleEvent(Event& e)
 {
 	if (e.type == Event::KeyPressed) {
 		if (e.key.code == Keyboard::Enter) {
-			if (gameState == GameSatet_GameOver) {
+			if (gameState == GameState_Ready) {
 				startGame();
+			}
+			else if (gameState == GameSatet_GameOver) {
+				readyGame();
 			}
 		}
 	}
@@ -144,11 +148,17 @@ void Game::handleEvent(Event& e)
 
 void Game::startGame(void)
 {
+	scoreValue = 0.0f;
+	gameState = GameState_InPlay;
+}
+
+void Game::readyGame(void)
+{
 	balls.clear();
 	items.clear();
 	spPlayer.reset();
-	scoreValue = 0.0f;
-	gameState = GameState_InPlay;
+	scoreText.setString("1:Easy 2:Normal 3:Hard 4:Insane");
+	gameState = GameState_Ready;
 }
 
 void Game::generateBall(void)

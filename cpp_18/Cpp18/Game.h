@@ -35,6 +35,7 @@ public:
 
 private:
 	void startGame(void);
+	void readyGame(void);
 	void generateBall(void);
 	void generateItem(void);
 	void updateScore(void);
