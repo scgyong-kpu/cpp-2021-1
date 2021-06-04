@@ -19,6 +19,7 @@ void Highscore::add(float score)
 	e.score = score;
 	//scores.push_back(e);
 
+	lastIndex = 0;
 	bool inserted = false;
 	for (auto it = scores.begin(); it != scores.end(); it++) {
 		if (score > it->score) {
@@ -26,6 +27,7 @@ void Highscore::add(float score)
 			inserted = true;
 			break;
 		}
+		lastIndex++;
 	}
 	if (!inserted) {
 		scores.push_back(e);
@@ -73,13 +75,15 @@ void Highscore::draw(RenderTarget& target, RenderStates states) const
 	text.setFillColor(Color::White);
 
 	char sbuf[256], tbuf[128];
-	float x = 100, y = WINDOW_HEIGHT / 2;
-	for (auto it = scores.begin(); it != scores.end(); it++, y += 40) {
+	float x = 140, y = WINDOW_HEIGHT * 3 / 5;
+	int index = 0;
+	for (auto it = scores.begin(); it != scores.end(); it++, y += 40, index++) {
 		auto& e = *it;
 		text.setPosition(x, y);
 		strftime(tbuf, sizeof(tbuf), "%Y-%m-%d %H:%M:%S", localtime(&e.time));
 		sprintf(sbuf, "%s %6.1f", tbuf, e.score);
 		text.setString(sbuf);
+		text.setFillColor(lastIndex == index ? Color::Yellow : Color::White);
 		target.draw(text);
 	}
 }

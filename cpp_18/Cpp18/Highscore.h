@@ -18,6 +18,7 @@ public:
 	virtual void draw(RenderTarget& target, RenderStates states = RenderStates::Default) const;
 protected:
 	Font font;
+	int lastIndex;
 	std::vector<ScoreEntry> scores;
 	//ScoreEntry scores[10];
 };

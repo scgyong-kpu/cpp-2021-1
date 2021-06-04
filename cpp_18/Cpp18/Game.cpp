@@ -18,7 +18,7 @@ Game::Game(RenderWindow& win)
 	Vector2u size = txGameOver.getSize();
 	spGameOver.setPosition(
 		(WINDOW_WIDTH - size.x) / 2.0f,
-		(WINDOW_HEIGHT - size.y) / 2.0f
+		(WINDOW_HEIGHT - size.y) / 4.0f
 	);
 
 	scoreFont.loadFromFile("res/lucon.ttf");
