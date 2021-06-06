@@ -67,6 +67,10 @@ void Player::handleEvent(Event& e)
 			if (vector.y >= 0) vector.y -= SPEED;
 		}
 	}
+	else if (e.type == Event::MouseMoved) {
+		target.x = e.mouseMove.x;
+		target.y = e.mouseMove.y;
+	}
 }
 
 void Player::reset(void)
@@ -90,8 +94,18 @@ void Player::moveToCenter(void)
 
 void Player::update()
 {
-	MovingSprite::update();
-	const Vector2f &pos = getPosition();
+	//MovingSprite::update();
+	const Vector2f& pos = getPosition();
+
+	float dx = target.x - pos.x;
+	float dy = target.y - pos.y;
+	double angle = atan2(dy, dx);
+	double dist = SPEED * Game::frameTime;
+	float mx = dist * cos(angle);
+	float my = dist * sin(angle);
+	move(mx, my);
+
+	//const Vector2f &pos = getPosition();
 
 	const float min_x = MARGIN, max_x = WINDOW_WIDTH - MARGIN - (float)size.x;
 	const float min_y = MARGIN, max_y = WINDOW_HEIGHT - MARGIN - (float)size.y;

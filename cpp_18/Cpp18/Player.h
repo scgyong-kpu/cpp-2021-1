@@ -9,6 +9,7 @@ class Player : public MovingSprite
 	Texture texture;
 	Texture redHeartTexture, whiteHeartTexture;
 	Sprite hearts[PLAYER_FULL_LIFE];
+	Vector2f target;
 
 public:
 	Player();
